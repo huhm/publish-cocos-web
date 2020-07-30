@@ -1,0 +1,20 @@
+{
+  "name": "publish-cocos-web",
+  "version": "0.0.1",
+  "description": "publish cocos web project to oss(cdn)",
+  "scripts": {
+    "help": "publish-cc --help",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "publish-cc": "bin/publish.js"
+  },
+  "author": "huhm <huhm2008@foxmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "ali-oss": "^6.10.0",
+    "chalk": "^4.1.0",
+    "commander": "^6.0.0",
+    "inquirer": "^7.3.3"
+  }
+}
