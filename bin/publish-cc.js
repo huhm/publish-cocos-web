@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const path=require('path');
 const program = require('commander');
-const pkg=require('../package.json');
-const initObj=require('../lib/init');
-const publisherUtils = require('../lib/publisher');
+const pkg=require('publish-cocos-web/package');
+const initObj=require('publish-cocos-web/lib/init');
+const publisherUtils = require('publish-cocos-web/lib/publisher');
 // 
 // publish-cc init
 // publish-cc -c ./.publish-cc.js
@@ -24,26 +24,41 @@ if(!defaultVersionFolder){
 }else{
   defaultVersionFolder='v'+defaultVersionFolder;
 }
+
 program
-  .version(pkg.version, '-V, --version')
-  // 用法说明
-  .usage('init')
+  .storeOptionsAsProperties(false)
+  .passCommandToAction(true);
+
+program
+  .version(pkg.version, '-V, --version');
+program
   .usage('[options]')
+  .command('exec')
   // 选择名 选项描述 默认值
   // 选项 可以带有一个参数 可以通过 program.copy 获取该选项信息
   // 如果没有参数 该值为 true
   .option('-c, --config <source>', 'specify the config file(default setting is ./.publish-cc.js)')
-  .requiredOption('-v, --ver <versionFolderName>', `version folder name，if not defined use the version of the project's package.json:`,defaultVersionFolder)
-  .parse(process.argv);
-
-function resolve(program) {
-  const { config, ver,args } = program;
+  .requiredOption('-v, --ver <versionFolderName>', `version folder name，if not defined use the version of the project's package.json:`,defaultVersionFolder);
   
+program.command('init').usage('init [options]')
+  .description('init config file')
+  .usage('init [options]')
+  .option('-f, --force', '',true) 
+
+program.parse(process.argv);
+function resolve(program) {
+  const options=program.opts();
+  const args=program.args; 
+  // return;
+
   if(args[0]==='init'){
+    const {force } = options; 
     // create config file
-    initObj.init();
+    initObj.init(force);
   }else{
-    // set dir 
+    const { config, ver } = options;
+   
+    // set dir
     // upload to oss
     publisherUtils.doPublish(config,ver)
   }
