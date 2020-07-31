@@ -38,17 +38,12 @@ program
 
 function resolve(program) {
   const { config, ver,args } = program;
-  console.log('config',config);
-  console.log('ver',ver)
-  for (let i = 0; i < args.length; i++) {
-    console.log(`arg[${i}]:${args[i]}`);
-  }
-
+  
   if(args[0]==='init'){
     // create config file
     initObj.init();
   }else{
-    // set dir
+    // set dir 
     // upload to oss
     publisherUtils.doPublish(config,ver)
   }
