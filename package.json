@@ -1,6 +1,6 @@
 {
   "name": "publish-cocos-web",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "publish cocos web project to oss(cdn)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
