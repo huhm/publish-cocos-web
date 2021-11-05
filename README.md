@@ -1,5 +1,8 @@
 # publish-cocos-web
+
 A tool to publish cocos web project to OSS
+
+![npm package](https://img.shields.io/npm/v/publish-cocos-web)
 
 [TOC]
 
